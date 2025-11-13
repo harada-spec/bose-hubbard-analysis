@@ -27,6 +27,7 @@
 
 ### 1. エネルギー収束 (Optimization)
 ![エネルギー期待値のグラフ](results/Mott_energy.png)
+
 *図: エネルギー期待値の最小化プロセス。学習（パラメータ最適化）が適切に進行し、基底状態へ収束している様子が確認できる。*
 
 ### 2. 相図の導出 (Phase Diagram)
@@ -51,5 +52,5 @@
     * H. Saito, *"Machine Learning Technique to Find Quantum Many-Body Ground States of Bosons on a Lattice"*, J. Phys. Soc. Jpn. **87**, 014001 (2018).
     * [[Journal]](https://journals.jps.jp/doi/10.7566/JPSJ.87.014001)
     
-    * (ボース・ハバードモデルの基底状態探索における機械学習の適用手法について詳述された論文)
+
 
