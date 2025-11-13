@@ -52,6 +52,9 @@
 
     * H. Saito, *"Machine Learning Technique to Find Quantum Many-Body Ground States of Bosons on a Lattice"*, J. Phys. Soc. Jpn. **87**, 014001 (2018).
     * [[Journal]](https://journals.jps.jp/doi/10.7566/JPSJ.87.014001)
+
+## 備考（Notes）　
+資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
 
 
