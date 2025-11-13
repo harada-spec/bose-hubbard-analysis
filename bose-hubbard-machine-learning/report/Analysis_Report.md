@@ -29,9 +29,7 @@ $$
 
 ### 2-2. 計算手法: Neural Quantum States (NQS)
 波動関数の近似表現として、多層パーセプトロン (MLP) を採用した。
-$$
-\Psi(\mathbf{x}; \theta) = \text{MLP}(\mathbf{x}; \theta)
-$$
+
 変分モンテカルロ法を用いて、エネルギー期待値 $E = \langle \Psi | H | \Psi \rangle / \langle \Psi | \Psi \rangle$ を最小化するようにネットワークパラメータを最適化（学習）した。
 
 ---
@@ -78,6 +76,7 @@ $$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
