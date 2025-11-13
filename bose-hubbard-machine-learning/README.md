@@ -31,8 +31,8 @@
 *図:1エネルギー期待値の最小化プロセス。基底状態へ収束している様子が確認できる。*
 
 ### 2. 相図の導出 (Phase Diagram)
-![相図1](results/phase1.png)
 ![相図2](results/phase2.png)
+![相図1](results/phase1.png)
 
 *図:2相関関数の計算結果に基づいて描かれた相図*
 
@@ -53,6 +53,7 @@
     * H. Saito, *"Machine Learning Technique to Find Quantum Many-Body Ground States of Bosons on a Lattice"*, J. Phys. Soc. Jpn. **87**, 014001 (2018).
     * [[Journal]](https://journals.jps.jp/doi/10.7566/JPSJ.87.014001)
     
+
 
 
 
