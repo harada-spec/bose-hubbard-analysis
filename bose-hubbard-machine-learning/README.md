@@ -28,12 +28,13 @@
 ### 1. エネルギー収束 (Optimization)
 ![エネルギー期待値のグラフ](results/Mott_energy.png)
 
-*図: エネルギー期待値の最小化プロセス。学習（パラメータ最適化）が適切に進行し、基底状態へ収束している様子が確認できる。*
+*図:1エネルギー期待値の最小化プロセス。基底状態へ収束している様子が確認できる。*
 
 ### 2. 相図の導出 (Phase Diagram)
 ![相図1](results/phase1.png)
 ![相図2](results/phase2.png)
-*図: 相関関数の計算結果に基づいて描かれた相図。相関の減衰挙動の違いから、パラメータ変化に応じた相（Phase）を捉えている。*
+
+*図:2相関関数の計算結果に基づいて描かれた相図*
 
 ## 📄 詳細レポート (Detailed Analysis)
 物理的な背景、実験設定、および詳細な考察は、以下のレポートにまとめています。
@@ -52,5 +53,6 @@
     * H. Saito, *"Machine Learning Technique to Find Quantum Many-Body Ground States of Bosons on a Lattice"*, J. Phys. Soc. Jpn. **87**, 014001 (2018).
     * [[Journal]](https://journals.jps.jp/doi/10.7566/JPSJ.87.014001)
     
+
 
 
