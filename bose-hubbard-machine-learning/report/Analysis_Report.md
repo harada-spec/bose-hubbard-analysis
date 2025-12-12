@@ -50,7 +50,7 @@ $$
 E(\boldsymbol{\theta}) = \frac{\langle \psi(\boldsymbol{\theta}) | \hat{H} | \psi(\boldsymbol{\theta}) \rangle}{\langle \psi(\boldsymbol{\theta}) | \psi(\boldsymbol{\theta}) \rangle} \ge E_0
 $$
 
-**最小化**: パラメータ $\boldsymbol{\theta}$ を調整して
+パラメータ $\boldsymbol{\theta}$ を調整して
 $E(\boldsymbol{\theta})$
 を最小化することで、真のエネルギー
 $E_0$
@@ -59,25 +59,24 @@ $E_0$
 #### アルゴリズムの流れ
 変分法を用いて基底状態を探索する一般的なプロセスは以下の通りである。
 
-1.  **アンスッツの構築 (Ansatz Construction)**
+1.  **試行関数の構築**
     系の物理的対称性や性質を考慮し、パラメータ $\boldsymbol{\theta}$ を含む試行波動関数 $|\psi(\boldsymbol{\theta})\rangle$ を定義する。
 
-2.  **期待値の計算 (Expectation Value)**
+2.  **期待値の計算**
     現在のパラメータ $\boldsymbol{\theta}$ におけるエネルギー期待値 $E(\boldsymbol{\theta}) = \langle \hat{H} \rangle_{\boldsymbol{\theta}}$ を計算する。
 
-3.  **パラメータの更新 (Optimization)**
+3.  **パラメータの更新**
     勾配降下法などの最適化アルゴリズムを用いて、エネルギー $E(\boldsymbol{\theta})$ が減少するように $\boldsymbol{\theta}$ を更新する。
     $$
     \boldsymbol{\theta}^{(t+1)} \leftarrow \boldsymbol{\theta}^{(t)} - \eta \nabla E(\boldsymbol{\theta})
     $$
 
-4.  **収束判定**
-    エネルギーの変化量が閾値以下になるまで、ステップ2, 3 を繰り返す。
+4.  **基底エネルギーの計算**
+    エネルギーが収束するまで、ステップ2, 3 を繰り返す。
+
+波動関数の近似表現としてニューラルネットワークを用いることで、基底状態の導出の導出を行う。
 
 
-波動関数の近似表現として、多層パーセプトロン (MLP) を採用した。
-
-変分モンテカルロ法を用いて、エネルギー期待値 $E = \langle \Psi | H | \Psi \rangle / \langle \Psi | \Psi \rangle$ を最小化するようにネットワークパラメータを最適化（学習）した。
 
 ---
 
@@ -123,6 +122,7 @@ $E_0$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
