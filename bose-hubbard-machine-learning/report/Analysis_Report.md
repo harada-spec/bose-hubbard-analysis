@@ -98,28 +98,51 @@ graph TD
 各ステップの理論的詳細は以下の通りである。
 
 #### 1. ニューラルネットワークの生成 (Initialization)
-試行波動関数 $\psi_{\boldsymbol{\theta}}(n)$ を表現するニューラルネットワークを構築し、重みパラメータ $\boldsymbol{\theta}$ を初期化する。
-入力 $n$ は粒子配置）を表し、出力は$\psi(n)$となる。
+試行波動関数
+$\psi_{\boldsymbol{\theta}}(n)$
+を表現するニューラルネットワークを構築し、重みパラメータ
+$\boldsymbol{\theta}$
+を初期化する。
+入力
+$n$
+は粒子配置を表し、出力は
+$\psi(n)$
+となる。
 
 #### 2. サンプリング (Sampling / MCMC)
-現在のパラメータ $\boldsymbol{\theta}$ における確率分布 $P(n) = |\psi_{\boldsymbol{\theta}}(n)|^2$ に従い、サンプルを生成する。
+現在のパラメータ
+$\boldsymbol{\theta}$
+における確率分布
+$P(n) = |\psi_{\boldsymbol{\theta}}(n)|^2$
+に従い、サンプルを生成する。
 ヒルベルト空間の次元爆発を回避するため、**メトロポリス・ヘイスティングス法 (Metropolis-Hastings Algorithm)** を用いたマルコフ連鎖モンテカルロ法 (MCMC) を採用している。
 
 #### 3. $\psi$ の計算 (Forward Pass)
-サンプリングされた各配置 $n_k$ に対し、ニューラルネットワークの順伝播（Forward Pass）を行い、波動関数の値 $\psi_{\boldsymbol{\theta}}(n_k)$ を計算する。
+サンプリングされた各配置
+$n_k$
+に対し、ニューラルネットワークの順伝播（Forward Pass）を行い、波動関数の値 $\psi_{\boldsymbol{\theta}}(n_k)$
+を計算する。
 
 #### 4. エネルギー期待値の計算 (Local Energy)
-ハミルトニアンの期待値 $\langle \hat{H} \rangle$ を、サンプリングされた配置の平均として近似計算する。
+ハミルトニアンの期待値
+$\langle \hat{H} \rangle$
+を、サンプリングされた配置の平均として近似計算する。
 
 #### 5. 勾配計算 (Gradient Calculation)
-エネルギー期待値を最小化するため、パラメータ $\boldsymbol{\theta}$ に対する勾配 $\nabla_{\boldsymbol{\theta}} E$ を計算する。
+エネルギー期待値を最小化するため、パラメータ
+$\boldsymbol{\theta}$
+に対する勾配
+$\nabla_{\boldsymbol{\theta}} E$
+を計算する。
 変分パラメータの更新則は以下の通り導出される。
 
 $$
 \nabla_{\boldsymbol{\theta}} E = 2 \text{Re} \left[ \langle E_{\text{loc}} \mathcal{O}^*_{\boldsymbol{\theta}} \rangle - \langle E_{\text{loc}} \rangle \langle \mathcal{O}^*_{\boldsymbol{\theta}} \rangle \right]
 $$
 
-ここで $\mathcal{O}_{\boldsymbol{\theta}}(s) = \nabla_{\boldsymbol{\theta}} \ln \psi_{\boldsymbol{\theta}}(s)$ は対数微分（ニューラルネットワークの逆伝播により取得）である。
+ここで
+$\mathcal{O}_{\boldsymbol{\theta}}(s) = \nabla_{\boldsymbol{\theta}} \ln \psi_{\boldsymbol{\theta}}(s)$
+は対数微分（ニューラルネットワークの逆伝播により取得）である。
 
 #### 6. 値の更新 (Parameter Update)
 計算された勾配を用いてパラメータを更新する。
@@ -173,6 +196,7 @@ $$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
