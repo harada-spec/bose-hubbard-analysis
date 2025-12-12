@@ -151,8 +151,8 @@ $$
 厳密対角化による真の基底エネルギーと比較を行った。
 
 ### 3-2. 相関関数と相図の導出
-![phase1](results/phase1.png)
-![phase2](results/phase2.png)
+![phase1](results/phase2.png)
+![phase2](results/phase1.png)
 
 *図2, 3: パラメータ $J, \mu$ を走査し、相関関数の減衰挙動に基づいて相をマッピングした結果*
 
@@ -182,6 +182,7 @@ $$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
