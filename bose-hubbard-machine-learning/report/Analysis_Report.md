@@ -74,9 +74,63 @@ $E_0$
 4.  **基底エネルギーの計算**
     エネルギーが収束するまで、ステップ2, 3 を繰り返す。
 
-波動関数の近似表現としてニューラルネットワークを用いることで、基底状態の導出の導出を行う。
+本研究では波動関数の近似表現としてニューラルネットワークを用いることで、基底状態の導出の導出を行う。
 
 
+
+
+---
+
+### 2-3. 学習アルゴリズムと詳細 (Algorithm & Implementation)
+
+本研究で用いた学習ループの全体像を以下に示す。このプロセスは、変分原理に基づきエネルギー期待値を最小化するよう、ニューラルネットワークのパラメータ $\boldsymbol{\theta}$ を反復的に更新するものである。
+
+![Flowchart](../images/your_flowchart_image.png)
+*図X: ニューラルネットワークを用いた変分モンテカルロ法 (NQS-VMC) の学習フロー*
+
+各ステップの理論的詳細は以下の通りである。
+
+#### 1. ニューラルネットワークの生成 (Initialization)
+試行波動関数 $\psi_{\boldsymbol{\theta}}(s)$ を表現するニューラルネットワークを構築し、重みパラメータ $\boldsymbol{\theta}$ を初期化する。
+入力 $s$ はスピン配置（または粒子配置）を表し、出力は波動関数の振幅（および位相）となる。
+
+#### 2. サンプリング (Sampling / MCMC)
+現在のパラメータ $\boldsymbol{\theta}$ における確率分布 $P(s) = |\psi_{\boldsymbol{\theta}}(s)|^2$ に従い、物理的に重要な電子配置（サンプル） $\{s_1, s_2, \dots, s_N\}$ を生成する。
+ヒルベルト空間の次元爆発を回避するため、**メトロポリス・ヘイスティングス法 (Metropolis-Hastings Algorithm)** を用いたマルコフ連鎖モンテカルロ法 (MCMC) を採用している。
+
+#### 3. $\psi$ の計算 (Forward Pass)
+サンプリングされた各配置 $s_k$ に対し、ニューラルネットワークの順伝播（Forward Pass）を行い、波動関数の値 $\psi_{\boldsymbol{\theta}}(s_k)$ を計算する。
+
+#### 4. エネルギー期待値の計算 (Local Energy)
+ハミルトニアンの期待値 $\langle \hat{H} \rangle$ を、サンプリングされた配置の平均として近似計算する。ここで重要なのが**局所エネルギー (Local Energy)** の概念である。
+
+$$
+E(\boldsymbol{\theta}) \approx \frac{1}{N_s} \sum_{k=1}^{N_s} E_{\text{loc}}(s_k)
+$$
+
+ここで $E_{\text{loc}}(s_k)$ は以下のように定義され、疎行列であるハミルトニアンの非ゼロ要素のみを用いて効率的に計算される。
+$$
+E_{\text{loc}}(s) = \frac{\langle s | \hat{H} | \psi_{\boldsymbol{\theta}} \rangle}{\langle s | \psi_{\boldsymbol{\theta}} \rangle} = \sum_{s'} \langle s | \hat{H} | s' \rangle \frac{\psi_{\boldsymbol{\theta}}(s')}{\psi_{\boldsymbol{\theta}}(s)}
+$$
+
+#### 5. 勾配計算 (Gradient Calculation)
+エネルギー期待値を最小化するため、パラメータ $\boldsymbol{\theta}$ に対する勾配 $\nabla_{\boldsymbol{\theta}} E$ を計算する。
+変分パラメータの更新則は以下の通り導出される。
+
+$$
+\nabla_{\boldsymbol{\theta}} E = 2 \text{Re} \left[ \langle E_{\text{loc}} \mathcal{O}^*_{\boldsymbol{\theta}} \rangle - \langle E_{\text{loc}} \rangle \langle \mathcal{O}^*_{\boldsymbol{\theta}} \rangle \right]
+$$
+
+ここで $\mathcal{O}_{\boldsymbol{\theta}}(s) = \nabla_{\boldsymbol{\theta}} \ln \psi_{\boldsymbol{\theta}}(s)$ は対数微分（ニューラルネットワークの逆伝播により取得）である。
+
+#### 6. 値の更新 (Parameter Update)
+計算された勾配を用いてパラメータを更新する。
+$$
+\boldsymbol{\theta}^{(t+1)} \leftarrow \boldsymbol{\theta}^{(t)} - \eta \cdot \nabla_{\boldsymbol{\theta}} E
+$$
+（※より高度な学習として、自然勾配法 (Stochastic Reconfiguration) を用いる場合はここにその旨を記載）
+
+以上の 2〜6 のステップを、エネルギーが収束するか、指定されたイテレーション回数に達するまで繰り返す。
 
 ---
 
@@ -122,6 +176,7 @@ $E_0$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
