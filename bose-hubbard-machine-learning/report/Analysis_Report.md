@@ -85,41 +85,31 @@ $E_0$
 
 本研究で用いた学習ループの全体像を以下に示す。このプロセスは、変分原理に基づきエネルギー期待値を最小化するよう、ニューラルネットワークのパラメータ $\boldsymbol{\theta}$ を反復的に更新するものである。
 
+```mermaid
 graph TD
-    A[ニューラルネットワークの生成] --&gt; B[サンプリング]
-    B --&gt; C[ψの計算]
-    C --&gt; D[エネルギー期待値の計算]
-    D --&gt; E[勾配計算]
-    E --&gt; F[値の更新]
-    F --&gt; |繰り返し| B
-
-![Flowchart](../images/your_flowchart_image.png)
+    A[ニューラルネットワークの生成] --> B[サンプリング]
+    B --> C[ψの計算]
+    C --> D[エネルギー期待値の計算]
+    D --> E[勾配計算]
+    E --> F[値の更新]
+    F --> |繰り返し| B
 *図X: ニューラルネットワークを用いた変分モンテカルロ法 (NQS-VMC) の学習フロー*
 
 各ステップの理論的詳細は以下の通りである。
 
 #### 1. ニューラルネットワークの生成 (Initialization)
-試行波動関数 $\psi_{\boldsymbol{\theta}}(s)$ を表現するニューラルネットワークを構築し、重みパラメータ $\boldsymbol{\theta}$ を初期化する。
-入力 $s$ はスピン配置（または粒子配置）を表し、出力は波動関数の振幅（および位相）となる。
+試行波動関数 $\psi_{\boldsymbol{\theta}}(n)$ を表現するニューラルネットワークを構築し、重みパラメータ $\boldsymbol{\theta}$ を初期化する。
+入力 $n$ は粒子配置）を表し、出力は$\psi(n)$となる。
 
 #### 2. サンプリング (Sampling / MCMC)
-現在のパラメータ $\boldsymbol{\theta}$ における確率分布 $P(s) = |\psi_{\boldsymbol{\theta}}(s)|^2$ に従い、物理的に重要な電子配置（サンプル） $\{s_1, s_2, \dots, s_N\}$ を生成する。
+現在のパラメータ $\boldsymbol{\theta}$ における確率分布 $P(n) = |\psi_{\boldsymbol{\theta}}(n)|^2$ に従い、サンプルを生成する。
 ヒルベルト空間の次元爆発を回避するため、**メトロポリス・ヘイスティングス法 (Metropolis-Hastings Algorithm)** を用いたマルコフ連鎖モンテカルロ法 (MCMC) を採用している。
 
 #### 3. $\psi$ の計算 (Forward Pass)
-サンプリングされた各配置 $s_k$ に対し、ニューラルネットワークの順伝播（Forward Pass）を行い、波動関数の値 $\psi_{\boldsymbol{\theta}}(s_k)$ を計算する。
+サンプリングされた各配置 $n_k$ に対し、ニューラルネットワークの順伝播（Forward Pass）を行い、波動関数の値 $\psi_{\boldsymbol{\theta}}(n_k)$ を計算する。
 
 #### 4. エネルギー期待値の計算 (Local Energy)
-ハミルトニアンの期待値 $\langle \hat{H} \rangle$ を、サンプリングされた配置の平均として近似計算する。ここで重要なのが**局所エネルギー (Local Energy)** の概念である。
-
-$$
-E(\boldsymbol{\theta}) \approx \frac{1}{N_s} \sum_{k=1}^{N_s} E_{\text{loc}}(s_k)
-$$
-
-ここで $E_{\text{loc}}(s_k)$ は以下のように定義され、疎行列であるハミルトニアンの非ゼロ要素のみを用いて効率的に計算される。
-$$
-E_{\text{loc}}(s) = \frac{\langle s | \hat{H} | \psi_{\boldsymbol{\theta}} \rangle}{\langle s | \psi_{\boldsymbol{\theta}} \rangle} = \sum_{s'} \langle s | \hat{H} | s' \rangle \frac{\psi_{\boldsymbol{\theta}}(s')}{\psi_{\boldsymbol{\theta}}(s)}
-$$
+ハミルトニアンの期待値 $\langle \hat{H} \rangle$ を、サンプリングされた配置の平均として近似計算する。
 
 #### 5. 勾配計算 (Gradient Calculation)
 エネルギー期待値を最小化するため、パラメータ $\boldsymbol{\theta}$ に対する勾配 $\nabla_{\boldsymbol{\theta}} E$ を計算する。
@@ -136,9 +126,8 @@ $$
 $$
 \boldsymbol{\theta}^{(t+1)} \leftarrow \boldsymbol{\theta}^{(t)} - \eta \cdot \nabla_{\boldsymbol{\theta}} E
 $$
-（※より高度な学習として、自然勾配法 (Stochastic Reconfiguration) を用いる場合はここにその旨を記載）
 
-以上の 2〜6 のステップを、エネルギーが収束するか、指定されたイテレーション回数に達するまで繰り返す。
+以上の 2〜6 のステップを指定されたイテレーション回数に達するまで繰り返す。
 
 ---
 
@@ -184,6 +173,7 @@ $$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
