@@ -130,13 +130,6 @@ $\langle \hat{H} \rangle$
 
 #### 5. 勾配計算 (Gradient Calculation)
 エネルギー期待値を最小化するため、パラメータ $\boldsymbol{\theta}$ に対する勾配 $\nabla_{\boldsymbol{\theta}} E$ を計算する。
-変分パラメータの更新則は以下の通り導出される。
-
-$$
-\nabla_{\boldsymbol{\theta}} E = 2 \mathrm{Re} \left[ \langle E_{\mathrm{loc}} \mathcal{O}^*_{\boldsymbol{\theta}} \rangle - \langle E_{\mathrm{loc}} \rangle \langle \mathcal{O}^*_{\boldsymbol{\theta}} \rangle \right]
-$$
-
-ここで $\mathcal{O}_{\boldsymbol{\theta}}(s) = \nabla_{\boldsymbol{\theta}} \ln \psi_{\boldsymbol{\theta}}(s)$ は対数微分（ニューラルネットワークの逆伝播により取得）である。
 
 #### 6. 値の更新 (Parameter Update)
 計算された勾配を用いてパラメータを更新する。
@@ -189,6 +182,7 @@ $$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
