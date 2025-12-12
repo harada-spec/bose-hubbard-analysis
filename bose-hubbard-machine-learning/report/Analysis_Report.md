@@ -41,17 +41,20 @@ $$
 $|\psi(\boldsymbol{\theta})\rangle$
 を考える。ここで、
 $\boldsymbol{\theta}=(\theta_1, \theta_2, \dots)$
-$\theta = (\theta_1, \theta_2, \dots)$
 は調整可能な変分パラメータである。
-このとき、ハミルトニアンの期待値 $E(\boldsymbol{\theta})$ は、真の基底状態エネルギー $E_0$ に対して常に以下の不等式を満たす（変分原理）。
+このとき、ハミルトニアンの期待値
+$E(\boldsymbol{\theta})$
+は、真の基底状態エネルギー $E_0$ に対して常に以下の不等式を満たす（変分原理）。
 
 $$
 E(\boldsymbol{\theta}) = \frac{\langle \psi(\boldsymbol{\theta}) | \hat{H} | \psi(\boldsymbol{\theta}) \rangle}{\langle \psi(\boldsymbol{\theta}) | \psi(\boldsymbol{\theta}) \rangle} \ge E_0
 $$
-
-* **等号成立条件**: $|\psi(\boldsymbol{\theta})\rangle$ が真の基底状態 $|\psi_0\rangle$ と一致（または定数倍）するとき、$E(\boldsymbol{\theta}) = E_0$ となる。
-* **最小化**: パラメータ $\boldsymbol{\theta}$ を調整して $E(\boldsymbol{\theta})$ を最小化することで、真のエネルギー $E_0$ の良質な近似値が得られる。このときの $|\psi(\boldsymbol{\theta})\rangle$ を**アンスッツ (Ansatz)** と呼ぶ。
-
+* **最小化**: パラメータ $\boldsymbol{\theta}$ を調整して
+* $E(\boldsymbol{\theta})$
+* を最小化することで、真のエネルギー
+* $E_0$
+* の近似値が得られる。
+  
 #### アルゴリズムの流れ
 変分法を用いて基底状態を探索する一般的なプロセスは以下の通りである。
 
@@ -119,6 +122,7 @@ $$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
