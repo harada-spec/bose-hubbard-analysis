@@ -49,11 +49,11 @@ $E(\boldsymbol{\theta})$
 $$
 E(\boldsymbol{\theta}) = \frac{\langle \psi(\boldsymbol{\theta}) | \hat{H} | \psi(\boldsymbol{\theta}) \rangle}{\langle \psi(\boldsymbol{\theta}) | \psi(\boldsymbol{\theta}) \rangle} \ge E_0
 $$
-* **最小化**: パラメータ $\boldsymbol{\theta}$ を調整して
-* $E(\boldsymbol{\theta})$
-* を最小化することで、真のエネルギー
-* $E_0$
-* の近似値が得られる。
+**最小化**: パラメータ $\boldsymbol{\theta}$ を調整して
+$E(\boldsymbol{\theta})$
+を最小化することで、真のエネルギー
+$E_0$
+の近似値が得られる。
   
 #### アルゴリズムの流れ
 変分法を用いて基底状態を探索する一般的なプロセスは以下の通りである。
@@ -122,6 +122,7 @@ $$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
