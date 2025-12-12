@@ -129,20 +129,14 @@ $\langle \hat{H} \rangle$
 を、サンプリングされた配置の平均として近似計算する。
 
 #### 5. 勾配計算 (Gradient Calculation)
-エネルギー期待値を最小化するため、パラメータ
-$\boldsymbol{\theta}$
-に対する勾配
-$\nabla_{\boldsymbol{\theta}} E$
-を計算する。
+エネルギー期待値を最小化するため、パラメータ $\boldsymbol{\theta}$ に対する勾配 $\nabla_{\boldsymbol{\theta}} E$ を計算する。
 変分パラメータの更新則は以下の通り導出される。
 
 $$
-\nabla_{\vec{\theta}} E = 2 \mathrm{Re} \left[ \langle E_{\mathrm{loc}} \mathcal{O}^*_{\vec{\theta}} \rangle - \langle E_{\mathrm{loc}} \rangle \langle \mathcal{O}^*_{\vec{\theta}} \rangle \right]
+\nabla_{\boldsymbol{\theta}} E = 2 \mathrm{Re} \left[ \langle E_{\mathrm{loc}} \mathcal{O}^*_{\boldsymbol{\theta}} \rangle - \langle E_{\mathrm{loc}} \rangle \langle \mathcal{O}^*_{\boldsymbol{\theta}} \rangle \right]
 $$
 
-ここで
-$\mathcal{O}_{\boldsymbol{\theta}}(s) = \nabla_{\boldsymbol{\theta}} \ln \psi_{\boldsymbol{\theta}}(s)$
-は対数微分（ニューラルネットワークの逆伝播により取得）である。
+ここで $\mathcal{O}_{\boldsymbol{\theta}}(s) = \nabla_{\boldsymbol{\theta}} \ln \psi_{\boldsymbol{\theta}}(s)$ は対数微分（ニューラルネットワークの逆伝播により取得）である。
 
 #### 6. 値の更新 (Parameter Update)
 計算された勾配を用いてパラメータを更新する。
@@ -157,20 +151,19 @@ $$
 ## 3. 結果と考察 (Results & Discussion)
 
 ### 3-1. 基底状態エネルギー計算
-![Energy](../results/Mott_energy.png)
+![Energy](results/Mott_energy.png)
 
 *図1: $L=6$ サイトにおける基底状態エネルギーの学習曲線 ($J/U = 0.05, \mu /U = 0.5$)*
 
 厳密対角化による真の基底エネルギーと比較を行った。
 
 ### 3-2. 相関関数と相図の導出
-![phase1](../results/phase1.png)
-![phase2](../results/phase2.png)
+![phase1](results/phase1.png)
+![phase2](results/phase2.png)
 
 *図2, 3: パラメータ $J, \mu$ を走査し、相関関数の減衰挙動に基づいて相をマッピングした結果*
 
-相関関数 $\langle b_i^\dagger b_{i+r} \rangle$ が距離 $r$ に対して「指数関数的に減衰するか（Mott相）」「代数的に減衰するか（SF相）」を判定基準とし、相図を作成した。
-
+相関関数 $\langle \hat{a}_i^\dagger \hat{a}_{i+r} \rangle$ が距離 $r$ に対して「指数関数的に減衰するか（Mott相）」「代数的に減衰するか（SF相）」を判定基準とし、相図を作成した。
 **【考察】**
 
 1.  **エネルギー精度の課題と改善案**
@@ -196,6 +189,7 @@ $$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
