@@ -137,7 +137,7 @@ $\nabla_{\boldsymbol{\theta}} E$
 変分パラメータの更新則は以下の通り導出される。
 
 $$
-\nabla_{\boldsymbol{\theta}} E = 2 \text{Re} \left[ \langle E_{\text{loc}} \mathcal{O}^*_{\boldsymbol{\theta}} \rangle - \langle E_{\text{loc}} \rangle \langle \mathcal{O}^*_{\boldsymbol{\theta}} \rangle \right]
+\nabla_{\vec{\theta}} E = 2 \mathrm{Re} \left[ \langle E_{\mathrm{loc}} \mathcal{O}^*_{\vec{\theta}} \rangle - \langle E_{\mathrm{loc}} \rangle \langle \mathcal{O}^*_{\vec{\theta}} \rangle \right]
 $$
 
 ここで
@@ -196,6 +196,7 @@ $$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
