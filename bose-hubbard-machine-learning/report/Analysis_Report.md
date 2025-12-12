@@ -144,7 +144,7 @@ $$
 ## 3. 結果と考察 (Results & Discussion)
 
 ### 3-1. 基底状態エネルギー計算
-![Energy](results/Mott_energy.png)
+![Energy](../results/Mott_energy.png)
 
 *図1: $L=6$ サイトにおける基底状態エネルギーの学習曲線 ($J/U = 0.05, \mu /U = 0.5$)*
 
@@ -182,6 +182,7 @@ $$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
