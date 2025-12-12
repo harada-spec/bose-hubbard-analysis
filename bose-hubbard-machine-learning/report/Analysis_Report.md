@@ -17,20 +17,54 @@
 ## 2. モデルと手法 (Methodology)
 
 ### 2-1. ハミルトニアン
-解析対象のハミルトニアンは以下の通りである。
+1次元ボース・ハバードモデルのハミルトニアンは以下の式で表される。
 
 $$
-H = -J \sum_{\langle i,j \rangle} (b_i^\dagger b_j + \text{h.c.}) + \frac{U}{2} \sum_i n_i (n_i - 1) - \mu \sum_i n_i
+\hat{H} = -J \sum_{i} \hat{a}_i^{\dagger} (\hat{a}_{i+1} + \hat{a}_{i-1}) + \frac{U}{2} \sum_{i} \hat{n}_i (\hat{n}_i - 1) - \mu \sum_{i} \hat{n}_i
 $$
-
 * $J$: ホッピング強度
-* $mu$: 化学ポテンシャル
-* $n_i = b_i^\dagger b_i$: 粒子数演算子
-* $b_i^\dagger$: サイト $i$ におけるボース粒子の生成演算子
-* $b_i^$: サイト $i$ におけるボース粒子の生成演算子
-* $n_i = b_i^\dagger b_i$: 粒子数演算子
+* $U$: オンサイト相互作用強度
+* $\mu$: 化学ポテンシャル
+* $\hat{a}_i^\dagger$: サイト $i$ におけるボース粒子の生成演算子
+* $\hat{a}_i^$: サイト $i$ におけるボース粒子の生成演算子
+* $\hat{n}_i = b_i^\dagger b_i$: 粒子数演算子
+  
+### 2-2. 変分法
+### 2-2. 変分法 (Variational Method)
 
-### 2-2. 計算手法: Neural Quantum States (NQS)
+量子多体系（ボース・ハバード模型など）において、系のハミルトニアン $\hat{H}$ の基底状態エネルギー $E_0$ を厳密に求めることは、ヒルベルト空間の次元が指数関数的に増大するため困難である。
+これに対し、**変分法**は基底状態エネルギーを近似的かつ効率的に求めるための強力な手法である。
+
+#### 変分原理
+任意の状態ベクトル（試行波動関数） $|\psi(\boldsymbol{\theta})\rangle$ を考える。ここで、$\boldsymbol{\theta} = (\theta_1, \theta_2, \dots)$ は調整可能な変分パラメータである。
+このとき、ハミルトニアンの期待値 $E(\boldsymbol{\theta})$ は、真の基底状態エネルギー $E_0$ に対して常に以下の不等式を満たす（変分原理）。
+
+$$
+E(\boldsymbol{\theta}) = \frac{\langle \psi(\boldsymbol{\theta}) | \hat{H} | \psi(\boldsymbol{\theta}) \rangle}{\langle \psi(\boldsymbol{\theta}) | \psi(\boldsymbol{\theta}) \rangle} \ge E_0
+$$
+
+* **等号成立条件**: $|\psi(\boldsymbol{\theta})\rangle$ が真の基底状態 $|\psi_0\rangle$ と一致（または定数倍）するとき、$E(\boldsymbol{\theta}) = E_0$ となる。
+* **最小化**: パラメータ $\boldsymbol{\theta}$ を調整して $E(\boldsymbol{\theta})$ を最小化することで、真のエネルギー $E_0$ の良質な近似値が得られる。このときの $|\psi(\boldsymbol{\theta})\rangle$ を**アンスッツ (Ansatz)** と呼ぶ。
+
+#### アルゴリズムの流れ
+変分法を用いて基底状態を探索する一般的なプロセスは以下の通りである。
+
+1.  **アンスッツの構築 (Ansatz Construction)**
+    系の物理的対称性や性質を考慮し、パラメータ $\boldsymbol{\theta}$ を含む試行波動関数 $|\psi(\boldsymbol{\theta})\rangle$ を定義する。
+
+2.  **期待値の計算 (Expectation Value)**
+    現在のパラメータ $\boldsymbol{\theta}$ におけるエネルギー期待値 $E(\boldsymbol{\theta}) = \langle \hat{H} \rangle_{\boldsymbol{\theta}}$ を計算する。
+
+3.  **パラメータの更新 (Optimization)**
+    勾配降下法などの最適化アルゴリズムを用いて、エネルギー $E(\boldsymbol{\theta})$ が減少するように $\boldsymbol{\theta}$ を更新する。
+    $$
+    \boldsymbol{\theta}^{(t+1)} \leftarrow \boldsymbol{\theta}^{(t)} - \eta \nabla E(\boldsymbol{\theta})
+    $$
+
+4.  **収束判定**
+    エネルギーの変化量が閾値以下になるまで、ステップ2, 3 を繰り返す。
+
+
 波動関数の近似表現として、多層パーセプトロン (MLP) を採用した。
 
 変分モンテカルロ法を用いて、エネルギー期待値 $E = \langle \Psi | H | \Psi \rangle / \langle \Psi | \Psi \rangle$ を最小化するようにネットワークパラメータを最適化（学習）した。
@@ -79,6 +113,7 @@ $$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
