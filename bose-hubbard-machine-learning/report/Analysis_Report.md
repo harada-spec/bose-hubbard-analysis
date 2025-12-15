@@ -133,9 +133,6 @@ $\langle \hat{H} \rangle$
 
 #### 6. 値の更新 (Parameter Update)
 計算された勾配を用いてパラメータを更新する。
-$$
-\boldsymbol{\theta}^{(t+1)} \leftarrow \boldsymbol{\theta}^{(t)} - \eta \cdot \nabla_{\boldsymbol{\theta}} E
-$$
 
 以上の 2〜6 のステップを指定されたイテレーション回数に達するまで繰り返す。
 
@@ -183,6 +180,7 @@ $$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
