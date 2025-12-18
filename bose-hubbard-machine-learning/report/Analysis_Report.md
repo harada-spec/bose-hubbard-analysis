@@ -67,9 +67,7 @@ $E_0$
 
 3.  **パラメータの更新**
     勾配降下法などの最適化アルゴリズムを用いて、エネルギー $E(\boldsymbol{\theta})$ が減少するように $\boldsymbol{\theta}$ を更新する。
-    $$
-    \boldsymbol{\theta}^{(t+1)} \leftarrow \boldsymbol{\theta}^{(t)} - \eta \nabla E(\boldsymbol{\theta})
-    $$
+  
 
 4.  **基底エネルギーの計算**
     エネルギーが収束するまで、ステップ2, 3 を繰り返す。
@@ -115,7 +113,7 @@ $\boldsymbol{\theta}$
 における確率分布
 $P(n) = |\psi_{\boldsymbol{\theta}}(n)|^2$
 に従い、サンプルを生成する。
-ヒルベルト空間の次元爆発を回避するため、**メトロポリス・ヘイスティングス法 (Metropolis-Hastings Algorithm)** を用いたマルコフ連鎖モンテカルロ法 (MCMC) を採用している。
+ヒルベルト空間の次元爆発を回避するため、**メトロポリス法 (Metropolis-Hastings Algorithm)** を用いたマルコフ連鎖モンテカルロ法 (MCMC) を採用している。
 
 #### 3. $\psi$ の計算 (Forward Pass)
 サンプリングされた各配置
@@ -180,6 +178,7 @@ $\langle \hat{H} \rangle$
 ## 備考（Notes）　
 資料作成および文書校正には、生成AIを活用し、品質と効率の向上に努めました。
     
+
 
 
 
